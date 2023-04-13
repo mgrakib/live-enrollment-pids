@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.btn{
+    @apply hover:shadow-[2px_2px_4px_rgb(0,0,0,.5)] duration-100
+}
+
+/* .app:not(:first-child){
+    border: 1px solid black;
+} */
+.footer-div li:not(:first-child){
+    border-left: 1px solid white;
+    padding-left: 5px;
+}
+
+.presoner-type{
+    @apply bg-gray-100 w-[250px] py-1 outline-none px-2
+}
+
+.category-link {
+    @apply w-[150px]  flex items-center justify-center
+}
+
+.active {
+    @apply bg-black text-white rounded-tl-md rounded-tr-md category-link
+}
+
+.default {
+    @apply bg-none text-black rounded-tl-md rounded-tr-md category-link
+}
