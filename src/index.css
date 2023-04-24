@@ -35,3 +35,7 @@
 .default {
     @apply bg-none text-black rounded-tl-md rounded-tr-md category-link
 }
+
+.inputFeild {
+    @apply outline-none px-1 py-[2px] text-[14px] block w-full 
+}

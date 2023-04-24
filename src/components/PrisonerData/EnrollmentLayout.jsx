@@ -7,8 +7,6 @@ const EnrollmentLayout = () => {
 
 	const prisonerIDType = useContext(useprisonerIDTypeContext);
 
-	console.log();
-	
 	
     return (
 		<div className='bg-gray-200 w-[1200px] py-2 px-4'>
@@ -72,7 +70,34 @@ const EnrollmentLayout = () => {
 							}
 						>
 							<li className='border border-black px-4 rounded-tl-md rounded-tr-md category-link'>
-								Personal Info
+								Address
+							</li>
+						</NavLink>
+						<NavLink
+							className={isActive =>
+								isActive ? "active" : "default"
+							}
+						>
+							<li className='border border-black px-4 rounded-tl-md rounded-tr-md category-link'>
+								Family
+							</li>
+						</NavLink>
+						<NavLink
+							className={isActive =>
+								isActive ? "active" : "default"
+							}
+						>
+							<li className='border border-black px-4 rounded-tl-md rounded-tr-md category-link'>
+								Education
+							</li>
+						</NavLink>
+						<NavLink
+							className={isActive =>
+								isActive ? "active" : "default"
+							}
+						>
+							<li className='border border-black px-2 rounded-tl-md rounded-tr-md category-link'>
+								Case Info
 							</li>
 						</NavLink>
 					</ul>

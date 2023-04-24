@@ -1,20 +1,20 @@
 import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import {  ArrowLeftOnRectangleIcon, ClipboardDocumentCheckIcon, KeyIcon, MagnifyingGlassIcon, PencilSquareIcon, ShieldCheckIcon, UserPlusIcon } from "@heroicons/react/24/solid";
-import { userDataContext, userFunctionContext } from './SortDisplay/SortDisplay';
+import { AuthcontextAPI } from '../AuthContext/AuthContext';
 
 const Home = () => {
-	const userData = useContext(userDataContext);
-	const setUserData = useContext(userFunctionContext);
-	const navigate = useNavigate();
+	const { logOut } = useContext(AuthcontextAPI);
+	const navigator = useNavigate();
 	const handelLogout = () => {
-		setUserData({});
-		navigate('/')
+			logOut()
+				.then(navigator('/'))
+				.catch(error => console.log(error.message));
 	}
 	
     return (
 		<div>
-			{/* service  */}
+			
 			<div className='w-[600px] h-[400px] bg-gray-300 mx-auto  flex items-center overflow-hidden'>
 				{/*  btns  */}
 				<div className='w-[calc(100%-45px)] h-full text-left p-10'>

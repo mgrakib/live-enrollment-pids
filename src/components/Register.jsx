@@ -1,48 +1,44 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { BeakerIcon, EyeIcon, EyeSlashIcon } from "@heroicons/react/24/solid";
 import { Link, useNavigate } from "react-router-dom";
-import { createUserWithEmailAndPassword, getAuth, updateProfile } from "firebase/auth";
+
 import toast, { Toaster } from "react-hot-toast";
-import app from "../FireBase/firebase.config";
-
-const auth = getAuth(app);
-
+import { AuthcontextAPI } from "../AuthContext/AuthContext";
 
 const Register = () => {
-	const navigate = useNavigate();
+	// import context function
+	const { creatAccount, setNamePhoto } = useContext(AuthcontextAPI);
 
+	const navigate = useNavigate();
+	// set error to display
 	const [error, setError] = useState("");
+	// jamde; regoster
 	const handelRegister = event => {
 		event.preventDefault();
-		const email = event.target.email.value;
-		const displayName = event.target.name.value;
-		const password = event.target.password.value;
+		const form = event.target;
+		const email = form.email.value;
+		const displayName = form.name.value;
+		const password = form.password.value;
 
-		createUserWithEmailAndPassword(auth, email, password)
+		creatAccount(email, password)
 			.then(result => {
-				
-				userFullName(result.user, displayName),
+				setNamePhoto(displayName)
+					.then()
+					.catch(error => setError(error.message));
+				// toast("Here is your toast.");
 				navigate('/');
-				toast("Here is your toast.");
+				
 			})
 			.catch(error => {
-				console.error(error.message), setError(error.message);
+				console.error("make is", error.message),
+					setError(error.message);
 			});
-
+		
 		event.target.reset();
 	};
 
-	const userFullName = (user, name) => {
-		console.log(name);
-
-		updateProfile(user, {
-			displayName: name,
-		})
-			.then()
-			.catch(error => console.log(error.message));
-	};
 	const [showPassword, setShowPassword] = useState(false);
 
 	return (

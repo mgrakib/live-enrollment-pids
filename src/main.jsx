@@ -11,6 +11,9 @@ import EnrollmentLayout from './components/PrisonerData/EnrollmentLayout';
 import PersonalInfo from './components/PrisonerData/PersonalInfo';
 import Login from './components/Login';
 import Register from './components/Register';
+import AuthContext from './AuthContext/AuthContext';
+import PrivateRoute from './PrivateRoute/PrivateRoute';
+import Resticted from './Resticted/Resticted';
 const router = createBrowserRouter([
 	{
 		path: "/",
@@ -22,19 +25,35 @@ const router = createBrowserRouter([
 				children: [
 					{
 						index: true,
-						element: <Login />,
+						element: (
+							<Resticted>
+								<Login />
+							</Resticted>
+						),
 					},
 					{
 						path: "register",
-						element: <Register />,
+						element: (
+							<Resticted>
+								<Register />
+							</Resticted>
+						),
 					},
 					{
 						path: "home",
-						element: <Home />,
+						element: (
+							<PrivateRoute>
+								<Home />
+							</PrivateRoute>
+						),
 					},
 					{
 						path: "enrollment",
-						element: <Enrollment />,
+						element: (
+							<PrivateRoute>
+								<Enrollment />
+							</PrivateRoute>
+						),
 					},
 				],
 			},
@@ -54,6 +73,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
 	<React.StrictMode>
-		<RouterProvider router={router} />
+		<AuthContext>
+			<RouterProvider router={router} />
+		</AuthContext>
 	</React.StrictMode>
 );

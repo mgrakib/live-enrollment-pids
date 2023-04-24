@@ -1,32 +1,31 @@
 import React, { useContext, useState } from 'react';
 import { BeakerIcon, EyeIcon, EyeSlashIcon } from "@heroicons/react/24/solid";
-import { Link, useNavigate } from 'react-router-dom';
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import app from '../FireBase/firebase.config';
-import { userFunctionContext } from './SortDisplay/SortDisplay';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
-const auth = getAuth(app);
+
+import { AuthcontextAPI } from '../AuthContext/AuthContext';
+
 
 const Login = () => {
-	const setUserFunction = useContext(userFunctionContext);
-	
+	const { singIn, logOut } = useContext(AuthcontextAPI);
 	const [showPassword, setShowPassword] = useState(false);
 	const [error, setError] = useState('');
 	const navigate = useNavigate();
-
+	
 	const handelLogin = (evetn) => {
 		evetn.preventDefault();
-		const email = evetn.target.email.value;
-		const password = evetn.target.password.value;
+		const form = event.target;
+		const email = form.email.value;
+		const password = form.password.value;
 
-		signInWithEmailAndPassword(auth, email, password)
+		singIn(email, password)
 			.then(result => {
-				navigate("/home"), setUserFunction(result.user);
-			}
-		).catch(error =>
-			{console.log(error.message),
-			setError(error.message)}
-			);
+				navigate('/home');
+				
+			})
+			.catch(error => {
+				console.log(error.message), setError(error.message);
+			});
 		
 	}
     return (
