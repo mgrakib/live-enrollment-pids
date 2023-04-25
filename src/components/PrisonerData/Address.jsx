@@ -1,7 +1,34 @@
-import React from 'react';
+/** @format */
+
+import React, { useEffect, useState } from "react";
 
 const Address = () => {
-    return (
+	// this is for district
+	const [district, setDistrict] = useState([]);
+	useEffect(() => {
+		fetch(`http://localhost:5000/district`)
+			.then(res => res.json())
+			.then(data => setDistrict(data));
+	}, []);
+
+	const [thana, setThana] = useState([]);
+
+	const [searchThana, setSearchThana] = useState("Select");
+	const handelThana = e => {
+		const district = e.target.value;
+		setSearchThana(district);
+	};
+
+	useEffect(() => {
+		fetch(`http://localhost:5000/district/${searchThana}`)
+			.then(res => res.json())
+			.then(data => setThana(data))
+			.catch(error => setThana([]));
+	}, [searchThana]);
+
+	
+
+	return (
 		<div className='my-5'>
 			<form className='grid grid-cols-4 gap-16'>
 				{/* Firsts column  */}
@@ -15,15 +42,16 @@ const Address = () => {
 							id=''
 							className='inputFeild'
 							required
+							onChange={handelThana}
 						>
-							{/* {bloodGroup.map((g, index) => (
+							{district.map((d, index) => (
 								<option
 									key={index}
-									value={g}
+									value={d}
 								>
-									{g}
+									{d}
 								</option>
-							))} */}
+							))}
 						</select>
 					</div>
 					{/* Thana  */}
@@ -35,14 +63,14 @@ const Address = () => {
 							className='inputFeild'
 							required
 						>
-							{/* {bloodGroup.map((g, index) => (
+							{thana.map((th, index) => (
 								<option
 									key={index}
-									value={g}
+									value={th}
 								>
-									{g}
+									{th}
 								</option>
-							))} */}
+							))}
 						</select>
 					</div>
 
