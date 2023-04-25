@@ -6,6 +6,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-size: 11px;
 }
 
 .btn{
@@ -37,5 +38,13 @@
 }
 
 .inputFeild {
-    @apply outline-none px-1 py-[2px] text-[14px] block w-full 
+    @apply outline-none px-1 py-[2px] text-[14px] block w-full  border-b border-[#00000078]
+}
+
+.textArea{
+    @apply block w-full outline-none px-1 py-[2px] max-h-[70px] min-h-[70px] relative border-b border-[#00000078]
+}
+
+.sortInput {
+    @apply w-[40px] mr-1 outline-none px-[2px] border-b border-[#00000078]
 }

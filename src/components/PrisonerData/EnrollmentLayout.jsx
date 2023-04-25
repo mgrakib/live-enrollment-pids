@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import {  UserIcon } from "@heroicons/react/24/solid";
 import { Link, NavLink, Outlet } from 'react-router-dom';
 import { useprisonerIDTypeContext } from '../Layout/Layout';
+import FunctionalButtons from '../SortDisplay/FunctionalButtons';
 
 const EnrollmentLayout = () => {
 
@@ -46,7 +47,7 @@ const EnrollmentLayout = () => {
 				<div>
 					<ul className='border-b border-black flex mt-3 gap-2'>
 						<NavLink
-							to={"../prisoner-info"}
+							to={"../live-enrollment"}
 							className={isActive =>
 								isActive ? "active" : "default"
 							}
@@ -56,6 +57,7 @@ const EnrollmentLayout = () => {
 							</li>
 						</NavLink>
 						<NavLink
+							to={"address"}
 							className={isActive =>
 								isActive ? "active" : "default"
 							}
@@ -65,15 +67,7 @@ const EnrollmentLayout = () => {
 							</li>
 						</NavLink>
 						<NavLink
-							className={isActive =>
-								isActive ? "active" : "default"
-							}
-						>
-							<li className='border border-black px-4 rounded-tl-md rounded-tr-md category-link'>
-								Address
-							</li>
-						</NavLink>
-						<NavLink
+							to={"family"}
 							className={isActive =>
 								isActive ? "active" : "default"
 							}
@@ -83,6 +77,7 @@ const EnrollmentLayout = () => {
 							</li>
 						</NavLink>
 						<NavLink
+							to={"education"}
 							className={isActive =>
 								isActive ? "active" : "default"
 							}
@@ -92,6 +87,7 @@ const EnrollmentLayout = () => {
 							</li>
 						</NavLink>
 						<NavLink
+							to={"case-info"}
 							className={isActive =>
 								isActive ? "active" : "default"
 							}
@@ -100,10 +96,33 @@ const EnrollmentLayout = () => {
 								Case Info
 							</li>
 						</NavLink>
+						<NavLink
+							to={"health-info"}
+							className={isActive =>
+								isActive ? "active" : "default"
+							}
+						>
+							<li className='border border-black px-2 rounded-tl-md rounded-tr-md category-link'>
+								Health Info
+							</li>
+						</NavLink>
+						<NavLink
+							to={"visitor-info"}
+							className={isActive =>
+								isActive ? "active" : "default"
+							}
+						>
+							<li className='border border-black px-4 rounded-tl-md rounded-tr-md category-link'>
+								Visitor Info
+							</li>
+						</NavLink>
 					</ul>
 				</div>
 
-				<Outlet />
+				<div className='min-h-[445px]'>
+					<Outlet />
+				</div>
+				<FunctionalButtons />
 			</div>
 		</div>
 	);

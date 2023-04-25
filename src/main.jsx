@@ -14,6 +14,12 @@ import Register from './components/Register';
 import AuthContext from './AuthContext/AuthContext';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 import Resticted from './Resticted/Resticted';
+import Address from './components/PrisonerData/Address';
+import Family from './components/PrisonerData/Family';
+import Education from './components/PrisonerData/Education';
+import CaseInfo from './components/PrisonerData/CaseInfo';
+import HealthInfo from './components/PrisonerData/HealthInfo';
+import VisitorInfo from './components/PrisonerData/VisitorInfo';
 const router = createBrowserRouter([
 	{
 		path: "/",
@@ -58,12 +64,40 @@ const router = createBrowserRouter([
 				],
 			},
 			{
-				path: "prisoner-info",
-				element: <EnrollmentLayout />,
+				path: "live-enrollment",
+				element: (
+					<PrivateRoute>
+						<EnrollmentLayout />
+					</PrivateRoute>
+				),
 				children: [
 					{
-						path: "/prisoner-info",
+						path: "/live-enrollment",
 						element: <PersonalInfo />,
+					},
+					{
+						path: "address",
+						element: <Address />,
+					},
+					{
+						path: "family",
+						element: <Family />,
+					},
+					{
+						path: "education",
+						element: <Education />,
+					},
+					{
+						path: "case-info",
+						element: <CaseInfo />,
+					},
+					{
+						path: "health-info",
+						element: <HealthInfo />,
+					},
+					{
+						path: "visitor-info",
+						element: <VisitorInfo />,
 					},
 				],
 			},

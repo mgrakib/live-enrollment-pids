@@ -19,7 +19,7 @@ const Enrollment = () => {
 		}
 		
 		setPrisonerID(prisonerIDType);
-		navigator("/prisoner-info");
+		navigator("/live-enrollment");
 	}
 
 	
@@ -35,7 +35,7 @@ const Enrollment = () => {
 					id=''
 					className='presoner-type'
 				>
-					<option value='Unver trial'>Under Trial</option>
+					<option value='Under trial'>Under Trial</option>
 					<option value='Convict'>Convict</option>
 				</select>
 				<p>Prisoner ID</p>
