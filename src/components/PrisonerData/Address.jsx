@@ -11,22 +11,41 @@ const Address = () => {
 			.then(data => setDistrict(data));
 	}, []);
 
-	const [thana, setThana] = useState([]);
+	// this is for present thana
+	const [presentThana, setPresentThana] = useState([]);
 
-	const [searchThana, setSearchThana] = useState("Select");
-	const handelThana = e => {
+	// select district for present 
+	const [searchPresentThana, setSearchPresentThana] = useState("Select");
+
+	// set function for present thana
+	const handelPresentThana = e => {
 		const district = e.target.value;
 		setSearchThana(district);
 	};
-
+	// search preseents thanas 
 	useEffect(() => {
-		fetch(`http://localhost:5000/district/${searchThana}`)
+		fetch(`http://localhost:5000/district/${searchPresentThana}`)
 			.then(res => res.json())
-			.then(data => setThana(data))
-			.catch(error => setThana([]));
-	}, [searchThana]);
+			.then(data => setPresentThana(data))
+			.catch(error => setPresentThana([]));
+	}, [searchPresentThana]);
 
-	
+	// for disableed 
+	const [isChecked, setIsChecked] = useState(false)
+
+
+	const handelPermanentThana = e => {
+		console.log(event.target.value);
+		
+	}
+
+
+
+
+
+
+
+
 
 	return (
 		<div className='my-5'>
@@ -42,7 +61,7 @@ const Address = () => {
 							id=''
 							className='inputFeild'
 							required
-							onChange={handelThana}
+							onChange={handelPresentThana}
 						>
 							{district.map((d, index) => (
 								<option
@@ -63,7 +82,7 @@ const Address = () => {
 							className='inputFeild'
 							required
 						>
-							{thana.map((th, index) => (
+							{presentThana.map((th, index) => (
 								<option
 									key={index}
 									value={th}
@@ -150,6 +169,9 @@ const Address = () => {
 								type='checkbox'
 								name=''
 								id=''
+								onClick={() => {
+									setIsChecked(!isChecked);
+								}}
 							/>{" "}
 							Same as Present Address
 						</div>
@@ -162,13 +184,23 @@ const Address = () => {
 							id=''
 							className='inputFeild'
 							required
+							disabled={isChecked}
+							onChange={handelPermanentThana}
 						>
-							{/* {bloodGroup.map((g, index) => (
+							{district.map((d, index) => (
 								<option
 									key={index}
-									value={g}
+									value={d}
 								>
-									{g}
+									{d}
+								</option>
+							))}
+							{/* {district.map((d, index) => (
+								<option
+									key={index}
+									value={isChecked ? searchPresentThana : d}
+								>
+									{isChecked ? searchPresentThana : d}
 								</option>
 							))} */}
 						</select>
